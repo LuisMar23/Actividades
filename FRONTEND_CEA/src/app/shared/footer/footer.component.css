@@ -1,0 +1,20 @@
+
+
+.main-footer{
+    box-shadow: 10px 10px 10px 3px rgba(0, 0, 0, 0.2);
+    background-color: #ffff;
+}
+.fo{
+    text-align: center;
+    /* font-family: 'Quicksand', sans-serif; */
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 13px;
+    font-weight: 100;
+    line-height: 1.42857143;
+    color: #666262;
+    margin: 10px 10px;
+}
+a{
+    text-decoration: none;
+    color:#4c87c2;
+}

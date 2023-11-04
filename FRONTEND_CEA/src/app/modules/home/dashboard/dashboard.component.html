@@ -1,0 +1,167 @@
+<app-header></app-header>
+<app-sidebar></app-sidebar>
+<link rel="stylesheet" href="dashboard.component.css">
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <div class="content-header">
+    <br>
+    <div class="container">
+      <div class="row mb-2">
+        <br>
+  
+        <div class="col-sm-6 texto">
+          <h1 >Inicio 
+            <small>cuadro de eventos e información</small></h1>
+          <hr>
+          <br>
+          
+        </div>
+      </div>
+      <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+  </div>
+  <!-- /.content-header -->
+  <section class="content">
+    <div class="container">
+      <div class="row col-12">
+        <div class="col-md-3">
+          <div class="small-box "style="font-family: 'Quicksand',sans-serif;border-top: 5px solid #e2a343;">
+            <div class="inner">
+              <h2>{{cantidadVisitas}}</h2>
+              <p ><b>VISITAS</b></p>
+              <i class="fa fa-address-card co"></i>
+              
+            <a [routerLink]="['/cea/visita/']" class="small-box-footer">Mas informacion <i
+              class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          
+          </div>
+        </div>
+
+
+        <div class="col-md-3">
+          <!-- small card -->
+          <div class="small-box  animated" style="font-family: 'Quicksand',sans-serif;border-top:5px solid #4CAF50">
+            <div class="inner">
+              <h2>{{cantidadInstituciones}}</h2>
+         
+              <p class="p-animation"><b>INSTITUCIONES</b></p>
+              <i class="fa fa-university co"></i>
+              <a [routerLink]="['/cea/institucion']" class="small-box-footer">
+                Mas informacion <i class="fas fa-arrow-circle-right"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <!-- small card -->
+          <div class="small-box  " style="font-family: 'Quicksand',sans-serif;border-top: 5px solid #f03311;">
+            <div class="inner">
+              <h2>{{cantidadActividades}}</h2>
+            
+              <p ><b>ACTIVIDADES</b></p>
+              <i class="fa fa-book-open co"></i>
+              <a [routerLink]="['/cea/actividad']" class="small-box-footer">
+                Mas informacion <i class="fas fa-arrow-circle-right"></i>
+              </a>
+            </div>
+       
+       
+          </div>
+        </div>
+
+        <!-- ./col -->
+        <div class="col-md-3" *ngIf="user.rol=='Administrador'">
+          <!-- small card -->
+          <div class="small-box " style="font-family: 'Quicksand',sans-serif;border-top: 5px solid #1ad0f0;">
+            <div class="inner">
+              <h2>{{cantidadUsuarios}}</h2>
+        
+              <p ><b>USUARIOS</b></p>
+              <i class="fa fa-users co"></i>
+              <a [routerLink]="['/singin/usuario']" class="small-box-footer">
+                Mas informacion <i class="fas fa-arrow-circle-right"></i>
+              </a>
+            </div>
+           
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <br>
+  <br>
+  <section class="content">
+    <div class="container">
+      <div class="row col-12">
+        
+        <div class="col-md-3">
+          <div class="small-box  " style="font-family: 'Quicksand',sans-serif;border-top: 5px solid #e677abec;">
+            <div class="inner">
+              <h2>{{cantidadReuniones}}</h2>
+              <p ><b>REUNIONES</b></p>
+              <i class="fa fa-handshake co"></i>
+              <a [routerLink]="['/cea/visita/']" class="small-box-footer">Mas informacion <i
+                class="fas fa-arrow-circle-right"></i></a>
+            </div>
+           
+          </div>
+        </div>
+        <div class="col-md-3" >
+          <div class="small-box " style="font-family: 'Quicksand',sans-serif;border-top: 5px solid #751fe6;">
+            <div class="inner">
+           
+              <h2>{{cantidadExteriores}}</h2>
+              <p  ><b>TALLERES AMBIENTALES EXTERIORES</b></p>
+
+              <i class="fa fa-tree co"></i>
+              <a [routerLink]="['/cea/visita/']" class="small-box-footer">Mas informacion <i
+                class="fas fa-arrow-circle-right"></i></a>
+            </div>
+        
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="small-box " style="font-family: 'Quicksand',sans-serif;border-top: 5px solid #a6e654;">
+            <div class="inner">
+            
+              <h2>{{cantidadInternos}}</h2>
+              <p  ><b>TALLERES AMBIENTALES INTERIORES</b></p>
+              <i class="fa fa-tree fa-2x co"></i>
+              <a [routerLink]="['/cea/visita/']" class="small-box-footer">Mas informacion <i
+                class="fas fa-arrow-circle-right"></i></a>
+            </div>
+         
+          </div>
+        </div>
+       
+        <div class="col-md-3">
+          <div class="small-box  " style="font-family: 'Quicksand',sans-serif;border-top: 5px solid #1972e7;">
+            <div class="inner">
+              <h2>{{cantidadCampanias}}</h2>
+              <p class="p-animation"><b>CAMPAÑAS AMBIENTALES</b></p>
+              <i class="fa fa-bookmark co" aria-hidden="true"></i>
+              <a [routerLink]="['/cea/visita/']" class="small-box-footer">Mas informacion <i
+                class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          
+        
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  
+    
+  
+  </section>
+
+  
+
+</div>
+
+
+
+
+<app-footer></app-footer>

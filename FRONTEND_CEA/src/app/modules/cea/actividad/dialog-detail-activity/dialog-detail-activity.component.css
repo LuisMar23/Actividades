@@ -1,0 +1,111 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lora&display=swap');
+
+
+
+.detail{
+  background-color: #ffff;
+}
+.panel{
+  margin: 0;
+  color: #ffff;
+  background-color: #4cac54;
+  padding: 20px 20px;
+  
+  
+}
+.panel>h1{
+  font-family: 'Quicksand',sans-serif;
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 16px;
+  color: inherit;
+}
+
+mat-dialog-content {
+  width: 650px;
+  height: 450px;
+  padding: 0;
+  margin: 0;
+}
+.titulo{
+  text-align: center;
+  text-transform: uppercase;
+  margin-bottom: 0.5em;
+  color:#3c8dbc ;
+  font-weight: 700;
+}
+
+.datos{
+  font-family: 'Quicksand',sans-serif;
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 13px;
+  font-weight: 500;
+  color: #444;
+}
+.datos1{
+
+  font-family: 'Quicksand',sans-serif;
+
+  font-size: 13px;
+  font-weight: 400;
+  color: #444;
+}
+.co>span{
+  margin-left: 40px;
+  margin-right: 40px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.btn{
+  background-color: #4ccc94;
+  color: #ffff;
+}
+
+.imt{
+  font-family: 'Quicksand',sans-serif;
+  font-weight: 600;
+}
+
+
+/* .ima {
+  display: flex;
+  gap: 10px;
+  width: 250px;
+  height: 100px;
+  display: flex;
+  flex-direction: row; 
+  gap: 10px;
+}   */
+
+/* .ima img {
+  width: 250px;
+  height: 140px; 
+} */
+
+/* .preview-container>ima{
+  display: flex;
+  flex-direction: row; 
+  gap: 10px;
+  width: 200px;
+  height: 100px;
+  
+
+} */
+.ima-horizontal {
+
+  gap: 10px; 
+  padding: 20px 20px;
+
+}
+
+/* .ima {
+  width: 250px; 
+  height: auto; 
+}  */
+.im>img{
+  width: 200px;
+  height: 200px;
+}

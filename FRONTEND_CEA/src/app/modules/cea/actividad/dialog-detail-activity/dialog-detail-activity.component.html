@@ -1,0 +1,54 @@
+<div class="panel">
+  <h1><i class="fa fa-book-open "> </i> Detalle de Actividad</h1>
+</div>
+<mat-dialog-content>
+  <div class="detail">
+    <div class="row">
+      <div class="">
+        <span class="datos">Realizado: {{actividad.fecha}}</span>
+
+      </div>
+    </div>
+    <div class="row">
+      <div style="text-align: center;">
+        <span class="titulo">{{actividad.nombre}}</span>
+
+      </div>
+
+    </div>
+    <div class="row">
+      <div class="datos"><b>Objetivo:</b> <span>{{actividad.objetivo}}</span></div>
+    </div>
+
+    <div class="row container-fluid">
+      <div class="co">
+        <span class="datos1">{{actividad.descripcion}}</span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="datos"><b>Lugar:</b> <span style="text-transform: uppercase;">{{actividad.lugar}}</span></div>
+    </div>
+  </div>
+  <hr>
+  <div class="container">
+    <p class="imt ">IMAGENES</p>
+
+      <div class="preview-container " *ngIf="actividad.imagenes && actividad.imagenes.length > 0">
+        <div class="ima-horizontal  col-7">
+          <div class="col-sm-3" *ngFor="let image of actividad.imagenes; let i = index">
+            <div class=" im ">
+              <img [src]="image.ruta" alt="Preview"  >
+            </div>
+      
+          </div>
+        </div>
+      
+    </div>
+  
+  </div>
+
+
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-dialog-close class="btn">Cerrar</button>
+</mat-dialog-actions>

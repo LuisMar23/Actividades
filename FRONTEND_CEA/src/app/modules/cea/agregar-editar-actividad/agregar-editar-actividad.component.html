@@ -1,0 +1,113 @@
+
+<div class="panel">
+  <h1>  {{operacion}} Actividad</h1>
+</div>
+<mat-dialog-content >
+  <form [formGroup]="form" (ngSubmit)="addEditarActividad()">
+    <div class="row">
+      <div class="column">
+        <p>
+          <mat-form-field appearance="fill">
+            <mat-label>Nombre</mat-label>
+            <input formControlName="nombre" matInput autocomplete="off" />
+          </mat-form-field>
+        </p>
+        <div class="error">
+          <span *ngIf="form.get('nombre')?.hasError('required') && form.get('nombre')?.touched">El nombre
+            es un campo <strong>Requerido</strong></span>
+        </div>
+      </div>
+    </div>
+  
+    <div class="row">
+      <div class="column">
+        <p>
+          <mat-form-field appearance="fill">
+            <mat-label>Objetivo</mat-label>
+            <input formControlName="objetivo" matInput autocomplete="off" />
+          </mat-form-field>
+        </p>
+        <div class="error">
+          <span *ngIf="form.get('objetivo')?.hasError('required') && form.get('objetivo')?.touched">El objetivo es un campo <strong>Requerido</strong></span>
+        </div>
+      </div>
+    </div>
+  
+    <div class="row">
+      <div class="column">
+        <p>
+          <mat-form-field appearance="fill">
+            <mat-label>Descripcion</mat-label>
+            <input formControlName="descripcion" matInput autocomplete="off" />
+          </mat-form-field>
+        </p>
+        <div class="error">
+          <span *ngIf="form.get('descripcion')?.hasError('required') && form.get('descripcion')?.touched">La descripcion es un campo <strong>Requerido</strong></span>
+        </div>
+      </div>
+    </div>
+  
+    <div class="row">
+      <div class="col">
+        <div class="column">
+          <mat-form-field appearance="fill">
+            <mat-label>Fecha</mat-label>
+            <input formControlName="fecha" matInput [matDatepicker]="picker" />
+            <mat-hint>DD/MM/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+          <div class="error">
+            <span *ngIf="form.get('fecha')?.hasError('required') && form.get('fecha')?.touched">La fecha es un campo
+              <strong>Requerido</strong></span>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="column">
+          <p>
+            <mat-form-field appearance="fill">
+              <mat-label>Lugar</mat-label>
+              <input formControlName="lugar" matInput autocomplete="off" />
+            </mat-form-field>
+          </p>
+          <div class="error">
+            <span *ngIf="form.get('lugar')?.hasError('required') && form.get('lugar')?.touched">La descripcion es un campo <strong>Requerido</strong></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="row">
+      <div class="container">
+  
+        <!-- Contenedor de botones en la parte superior -->
+        <div class="">
+          <!-- Personaliza el label del input de archivo -->
+          <label class="file-upload-label">
+            <input type="file" #fileInput (change)="onFileSelected($event)" multiple accept="image/*">
+            <!-- <input type="file" id="fileInput" multiple accept="image/*"> -->
+            Seleccionar Imágenes
+          </label>
+         
+        </div>
+  
+        <div class="preview-container" *ngFor="let image of selectedImages; let i = index">
+          <img [src]="image.ruta" alt="Preview" class="preview-image">
+          <button (click)="removeImage(i)">  Borrar</button>
+        </div>
+
+      </div>
+    </div>
+    <hr>
+    <mat-dialog-actions align="end">
+      <button type="submit"  [disabled]="form.invalid"  class="btn  b" mat-button cdkFocusInitial>Aceptar</button>
+    
+      <button type="button" class="btn  c" (click)="cancelar()" mat-button mat-dialog-close>Cancelar</button>
+    </mat-dialog-actions>
+  </form>
+
+</mat-dialog-content>
+
+
+

@@ -1,0 +1,204 @@
+<h2 mat-dialog-title>{{ operacion }} Visita</h2>
+
+<form [formGroup]="form" (ngSubmit)="agregarVisita()">
+  <mat-dialog-content class="mat-typography">
+    <div class="row">
+      <div class="column">
+        <p>
+          <mat-form-field appearance="fill">
+            <mat-label>Nombre</mat-label>
+            <input formControlName="nombrePersona" matInput autocomplete="off" />
+          </mat-form-field>
+        </p>
+        <div class="error">
+          <span *ngIf="form.get('nombrePersona')?.hasError('required') && form.get('nombrePersona')?.touched">El nombre
+            es un campo <strong>Requerido</strong></span>
+        </div>
+      </div>
+      <div class="column">
+        <p>
+          <mat-form-field appearance="fill">
+            <mat-label>Apellido</mat-label>
+            <input formControlName="apellidoPersona" matInput autocomplete="off" />
+          </mat-form-field>
+        </p>
+        <div class="error">
+          <span *ngIf="form.get('apellidoPersona')?.hasError('required') && form.get('apellidoPersona')?.touched">El
+            apellido es un campo <strong>Requerido</strong></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-4">
+        <p>
+          <mat-form-field appearance="fill">
+            <mat-label>CI</mat-label>
+            <input formControlName="ciPersona" matInput autocomplete="off" />
+          </mat-form-field>
+        </p>
+        <div class="error">
+          <span *ngIf="form.get('ciPersona')?.hasError('maxlength')">El C.I. debe tener como maximo 11 caracteres</span>
+        </div>
+        <div>
+          <span class="error" *ngIf="form.get('ciPersona')?.hasError('pattern')">
+            El C.I. sólo debe tener <strong>números</strong>
+          </span>
+        </div>
+
+      </div>
+
+      <div class="col-4">
+        <mat-form-field appearance="fill">
+          <mat-label>Tipo</mat-label>
+          <mat-select [(ngModel)]="opcionSeleccionada" formControlName="tipo">
+            <mat-option *ngFor="let tipo of ListaTipo" [value]="tipo">{{tipo}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div class="error">
+          <span *ngIf="form.get('tipo')?.hasError('required')&& form.get('tipo')?.touched ">El tipo es un campo
+            <strong>requerido</strong></span>
+        </div>
+      </div>
+
+      <div class="col-4">
+        <div>
+          <p>
+            <mat-form-field appearance="fill">
+              <mat-label>Edad</mat-label>
+              <input formControlName="edadPersona" matInput autocomplete="off" />
+            </mat-form-field>
+
+          </p>
+
+        <span class="error" *ngIf="form.get('edadPersona')?.hasError('pattern')">
+          La edad sólo debe tener <strong>números</strong>
+        </span>
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="row">
+      <div class="col-4">
+        <p>
+          <mat-form-field appearance="fill">
+            <mat-label>Celular</mat-label>
+            <input formControlName="celularPersona" matInput autocomplete="off" />
+          </mat-form-field>
+        </p>
+        <div class="error">
+          <span *ngIf="form.get('celularPersona')?.hasError('maxlength')">El celular debe tener como maximo 17
+            caracteres</span>
+            <span *ngIf="form.get('celularPersona')?.hasError('pattern')">
+              El celular sólo debe tener <strong>números</strong>
+            </span>
+        </div>
+      </div>
+
+      <div class="col-4">
+        <p>
+          <mat-form-field appearance="fill">
+            <mat-label>Email</mat-label>
+            <input formControlName="email" matInput autocomplete="off" />
+          </mat-form-field>
+        </p>
+        <div class="error">
+          <span *ngIf="form.get('email')?.hasError('email')">Debe ingresar una direccion de email valida</span>
+        </div>
+      </div>
+
+      <div class="col-4">
+
+
+        <mat-form-field appearance="fill">
+          <mat-label>Buscar Institucion</mat-label>
+          <input  matInput autocomplete="off"  (keyup)="seleccionarInstitucion($event)"/>
+          <mat-select formControlName="InstitucionId">
+            <mat-option *ngFor="let Institucion of dataInstitucion" [value]="Institucion.id">{{Institucion.nombre}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+
+
+        <!-- <mat-form-field class="example-full-width">
+          <mat-label>Institucion</mat-label>
+          <input type="text"
+                 (keyup)="seleccionarInstitucion($event)"
+                 placeholder="Pick one"
+                 matInput
+                 >
+                 <mat-select formControlName="InstitucionId">
+                  <ng-container *ngFor="let Institucion of dataInstitucion" >
+                    <mat-option *ngIf="existe" [value]="Institucion.id">{{Institucion.nombre}}
+                    </mat-option>
+                  </ng-container>
+            </mat-select> -->
+          <!-- <mat-autocomplete   #auto="matAutocomplete" >
+
+            <ng-container *ngFor="let Institucion of dataInstitucion">
+              <mat-option [value]="Institucion.nombre" >
+                {{Institucion.nombre}}
+              </mat-option>
+            </ng-container>
+            <mat-option    *ngFor="let Institucion of dataInstitucion"  [value]="Institucion.nombre" (click)="idSelect(Institucion.id)" >{{Institucion.nombre}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field> -->
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-4">
+        <mat-form-field appearance="fill">
+          <mat-label>Buscar Actividad</mat-label>
+          <input matInput autocomplete="off"  (keyup)="seleccionarActividad($event)"/>
+          <mat-select formControlName="ActividadId">
+            <mat-option *ngFor="let Actividad of dataActividad" [value]="Actividad.id">{{Actividad.nombre}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="col-4">
+        <label id="example-radio-group-label">Seleccione el genero</label>
+        <mat-radio-group
+          aria-labelledby="example-radio-group-label"
+          class="example-radio-group"
+          formControlName="genero">
+          <mat-radio-button value="1">Masculino</mat-radio-button>
+          <mat-radio-button value="0">Femenino</mat-radio-button>
+        </mat-radio-group>
+      </div>
+
+      <div class="col-4">
+        <div>
+          <p>
+            <mat-form-field appearance="fill">
+              <mat-label>Barrio/Zona</mat-label>
+              <input formControlName="barrio_zona" matInput autocomplete="off" />
+            </mat-form-field>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <p>
+        <mat-form-field appearance="fill">
+          <mat-label>Observaciones</mat-label>
+          <input formControlName="observaciones" matInput autocomplete="off" />
+        </mat-form-field>
+      </p>
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button type="submit"  [disabled]="form.invalid"  class="btn btn-info b" mat-button cdkFocusInitial>Aceptar</button>
+    <button type="button" class="btn btn-warning c" (click)="cancelar()" mat-button mat-dialog-close>Cancelar</button>
+</mat-dialog-actions>
+</form>
+
+

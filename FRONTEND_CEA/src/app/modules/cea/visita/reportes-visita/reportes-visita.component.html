@@ -1,0 +1,59 @@
+<!-- FORMULARIO REPORTE -->
+
+<form [formGroup]="form" (ngSubmit)="generarReporte()">
+  <mat-dialog-content>
+    <h1>Generar Reporte</h1>
+    <span><b>Se debe ingresar un día demás para generar los reportes hasta la fecha seleccionada </b> </span>
+    <div class="container text-center">
+      <div class="row align-items-start">
+        <div class="col-4">
+          <div class="colum">
+            <mat-form-field appearance="fill">
+              <mat-label>Fecha Inicio</mat-label>
+              <input formControlName="fechaInicio" matInput [matDatepicker]="picker" />
+              <mat-hint>DD/MM/YYYY</mat-hint>
+              <mat-datepicker-toggle
+                matIconSuffix
+                [for]="picker"
+              ></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="colum">
+            <mat-form-field appearance="fill">
+              <mat-label>Fecha Final</mat-label>
+              <input formControlName="fechaFinal" matInput [matDatepicker]="picker1" />
+              <mat-hint>DD/MM/YYYY</mat-hint>
+              <mat-datepicker-toggle
+                matIconSuffix
+                [for]="picker1"
+              ></mat-datepicker-toggle>
+              <mat-datepicker #picker1></mat-datepicker>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="colum">
+            <mat-form-field appearance="fill">
+              <mat-label>Tipo</mat-label>
+              <mat-select formControlName="tipo">
+                <mat-option  *ngFor="let t of tipos" value="{{t}}">{{t}}</mat-option>
+              </mat-select>
+          </mat-form-field>
+          <div class="error">
+              <span *ngIf="form.get('tipo')?.hasError('required')&& form.get('tipo')?.touched ">Seleccione un tipo es <strong>requerido</strong></span>
+          </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button type="submit"  [disabled]="form.invalid"  mat-button cdkFocusInitial class="btn btn-info b">Enviar</button>
+    <button type="button" class="btn btn-danger c" (click)="cancelar()" mat-button>Cancelar</button>
+  </mat-dialog-actions>
+</form>
+<!--  -->

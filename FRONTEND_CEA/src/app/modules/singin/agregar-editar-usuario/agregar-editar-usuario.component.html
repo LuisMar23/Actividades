@@ -1,0 +1,172 @@
+
+<div class="panel">
+  <h1>  {{ operacion }} Usuario</h1>
+</div>
+<form [formGroup]="form" (ngSubmit)='agregarUsuario()'>
+  <mat-dialog-content>
+    <div class="row">
+      <div class="column">
+        <mat-form-field appearance="fill">
+          <mat-label>Nombres</mat-label>
+          <input formControlName="nombrePersona" matInput>
+        </mat-form-field>
+
+        <div class="error">
+          <span *ngIf="form.get('nombrePersona')?.hasError('required') && form.get('nombrePersona')?.touched">
+            El nombre es un campo <strong>requerido</strong>
+          </span>
+        </div>
+      </div>
+      <div class="column">
+        <mat-form-field appearance="fill">
+          <mat-label>Apellidos</mat-label>
+          <input formControlName="apellidoPersona" matInput>
+        </mat-form-field>
+        <div class="error">
+          <span *ngIf="form.get('apellidoPersona')?.hasError('required') && form.get('apellidoPersona')?.touched">
+            El apellido es un campo <strong>requerido</strong>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+
+    </div>
+    <div class="row">
+      <div class="column">
+        <mat-form-field h appearance="fill">
+          <mat-label>Edad</mat-label>
+          <input formControlName="edad" matInput>
+        </mat-form-field>
+        <div class="error">
+          <span *ngIf="form.get('edad')?.hasError('required') && form.get('edad')?.touched">
+            La edad es un campo <strong>requerido</strong>
+          </span>
+          <span *ngIf="form.get('edad')?.hasError('pattern')">
+            La edad sólo debe tener <strong>números</strong>
+          </span>
+        </div>
+      </div>
+      <div class="column">
+        <mat-form-field h appearance="fill">
+          <mat-label>Celular</mat-label>
+          <input formControlName="celular" matInput>
+        </mat-form-field>
+        <div class="error">
+          <span *ngIf="form.get('celular')?.hasError('required') && form.get('celular')?.touched">
+            El celular es un campo <strong>requerido</strong>
+          </span>
+          <span *ngIf="form.get('celular')?.hasError('pattern')">
+            El celular sólo debe tener <strong>números</strong>
+          </span>
+
+        </div>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="column">
+        <mat-form-field appearance="fill">
+          <mat-label>C.I.</mat-label>
+          <input formControlName="ci" matInput>
+        </mat-form-field>
+        <div class="error">
+          <span *ngIf="form.get('ci')?.hasError('required') && form.get('ci')?.touched">
+            El C.I. es un campo <strong>requerido</strong>
+          </span>
+          <span *ngIf="form.get('ci')?.hasError('pattern')">
+            El C.I. sólo debe tener <strong>números</strong>
+          </span>
+        </div>
+      </div>
+
+
+      <div class="column">
+        <mat-form-field appearance="fill">
+          <mat-label>Usuario</mat-label>
+          <input formControlName="nombreUsuario" matInput>
+        </mat-form-field>
+        <div class="error">
+          <span *ngIf="form.get('nombreUsuario')?.hasError('required')&& form.get('nombreUsuario')?.touched">
+            El usuario es un campo <strong>requerido</strong>
+          </span>
+        </div>
+      </div>
+
+      <div class="column">
+        <label id="example-radio-group-label">Seleccione el Género</label>
+        <mat-radio-group
+          class="example-radio-group"
+          formControlName="genero">
+          <mat-radio-button class="example-radio-button" [value]="1">Masculino</mat-radio-button>
+          <mat-radio-button class="example-radio-button" [value]="0">Femenino</mat-radio-button>
+        </mat-radio-group>
+      </div>
+      <div class="error">
+        <span *ngIf="form.get('genero')?.hasError('required')&& form.get('genero')?.touched">
+          El género es <strong>requerido</strong>
+        </span>
+      </div>
+
+    </div>
+    <div class="row">
+      <div class="column">
+        <mat-form-field appearance="fill">
+          <mat-label>Contraseña</mat-label>
+          <input matInput [type]="hide ? 'password' : 'text'" formControlName="contrasenia" matInput>
+          <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field>
+
+        <!-- <mat-form-field appearance="fill">
+          <mat-label>Contraseña</mat-label>
+          <input formControlName="contrasenia" matInput>
+          <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field> -->
+        <div class="error">
+          <span *ngIf="form.get('contrasenia')?.hasError('required')&& form.get('contrasenia')?.touched">
+            La contraseña es un campo <strong>requerido</strong>
+          </span>
+        </div>
+      </div>
+      <div class="column">
+        <mat-form-field appearance="fill">
+          <mat-label>Rol</mat-label>
+          <mat-select formControlName="rolUsuario">
+            <mat-option *ngFor="let rol of listaRoles" [value]="rol">{{rol}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div class="error">
+          <span *ngIf="form.get('rolid')?.hasError('required')&& form.get('rolid')?.touched">
+            El rol es un campo <strong>requerido</strong>
+          </span>
+        </div>
+      </div>
+      <div class="column">
+        <mat-form-field appearance="fill">
+          <mat-label>Barrio/Zona</mat-label>
+          <input formControlName="barrio_zona" matInput>
+        </mat-form-field>
+      </div>
+      <div class="column">
+        <mat-form-field appearance="fill">
+          <mat-label>Email</mat-label>
+          <input formControlName="email" matInput>
+        </mat-form-field>
+        <div class="error">
+          <!-- <span *ngIf="form.get('email')?.hasError('required') && form.get('email')?.touched">El email es un campo
+            <strong>Requerido</strong></span> -->
+          <span *ngIf="form.get('email')?.hasError('email')">Debe ingresar una direccion de email valida</span>
+        </div>
+      </div>
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button type="submit" [disabled]="this.form.invalid" class="btn btn-info b" mat-button >Aceptar</button>
+    <button type="button" class="btn btn-warning c" (click)="cancelar()" mat-button mat-dialog-close>Cancelar</button>
+  </mat-dialog-actions>
+</form>

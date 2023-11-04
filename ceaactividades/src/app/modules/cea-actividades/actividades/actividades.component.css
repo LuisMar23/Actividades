@@ -1,0 +1,235 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand&family=Roboto+Flex:wght@300&display=swap');
+.lista{
+    background-color: #f9f9f9;
+    padding: 10px 10px;
+   
+}
+
+.container-sm{
+    background-color: #ffff;
+    padding: 20px 20px;
+    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.2);
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+}
+
+@import "https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap";
+
+
+.cont {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 100%;
+  padding: 20px 0;
+  flex-wrap: wrap;
+  background-color: #ffffff;
+}
+.cont .card {
+  position: relative;
+  min-width: 320px;
+  height: 440px;
+  box-shadow: inset 5px 5px 5px rgba(0, 0, 0, 0.05), inset -5px -5px 5px rgba(255, 255, 255, 0.5), 5px 5px 5px rgba(0, 0, 0, 0.05), -5px -5px 5px rgba(255, 255, 255, 0.5);
+  border-radius: 15px;
+  margin: 30px;
+}
+.cont .card .box {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  right: 20px;
+  bottom: 20px;
+  background: #ebf5fc;
+  border-radius: 15px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.cont .card .box::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.02);
+}
+.cont .card .box .content {
+  padding: 20px;
+  text-align: center;
+}
+.cont .card .box .content h2 {
+  position: absolute;
+  top: -10px;
+  right: 30px;
+  font-size: 8em;
+  color: rgba(0, 0, 0, 0.02);
+  transition: 0.5s;
+}
+.cont .card .box .content h3 {
+  font-size: 1.8em;
+  color: #777;
+  z-index: 1;
+  transition: 0.4s;
+}
+.cont .card .box .content p {
+  font-size: 16px;
+  font-weight: 300;
+  color: #777;
+  z-index: 1;
+  transition: 0.4s;
+}
+.cont .card .box .content a {
+  position: relative;
+  display: inline-block;
+  padding: 8px 20px;
+  background: #03a9f4;
+  margin-top: 15px;
+  border-radius: 20px;
+  text-decoration: none;
+  font-weight: 400;
+  color: #fff;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+.cont .card:hover .box {
+  transform: translateY(-40px);
+  transition: 0.5S;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  background: linear-gradient(45deg, #b95ce4, #e91e63);
+  background: linear-gradient(45deg, #b95ce4, #4f29cd);
+}
+.cont .card:hover .box .content h2 {
+  color: rgba(0, 0, 0, 0.05);
+}
+.cont .card:hover .box .content h3 {
+  color: rgb(255, 255, 255);
+}
+.cont .card:hover .box .content p {
+  color: rgb(255, 255, 255);
+}
+.cont .card:hover .box .content a {
+  background: #ff568f;
+}
+
+h4{
+  display: block;
+  margin-block-start: 1.33em;
+  margin-block-end: 1.33em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  /* font-weight: bold; */
+  font-family: 'Quicksand', sans-serif;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #333;
+}
+
+.panel-title {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 16px;
+  color: inherit;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 500;
+}
+.text-uppercase {
+  text-transform: uppercase;
+}
+.text-center {
+  text-align: center;
+}
+
+b, strong {
+    font-weight: 700;
+    color: #333333;
+}
+
+label {
+  display: inline-block;
+  max-width: 100%;
+  margin-bottom: 5px;
+  font-weight: 500;
+  
+}
+
+.col-sm-6{
+  border-color: black;
+}
+div.dataTables_length label {
+  font-weight: normal;
+  white-space: nowrap;
+  text-align: left;
+  gap: 10px;
+    line-height: 1.42857143;
+  color: #333;
+  font-family: 'Quicksand', sans-serif;
+}
+ div.dataTables_filter label {
+  font-weight: normal;
+  white-space: nowrap;
+  text-align: left;
+  gap: 10px;
+  line-height: 1.42857143;
+  color: #333;
+  font-family: 'Quicksand', sans-serif;
+}
+.bus{
+  width: 150px;
+}
+
+.form-control{
+  border-width: 1px;
+  border-radius: 5%;
+  vertical-align: middle;
+ 
+}
+
+.dataTables_filter{
+  float: right;
+}
+.cantidad{
+  width: 60px;
+}
+.row{
+  padding: 10px 10px ;
+  margin-top: 10px;
+}
+
+.panel-actividades{
+  background-color: #f9f9f9;
+  padding-top: 70px;
+  margin-top: 70px;
+  padding-bottom: 25px;
+
+
+}
+
+.titulo{
+  font-family: 'Quicksand', sans-serif;
+  font-size: 20px;
+  padding-top: 20px;
+  margin: 20px;
+  padding-bottom: 5px;
+  padding-left: 0px;
+}
+.container{
+  padding-left: 0px;
+}
+
+small{
+  color: #777777;
+  font-weight: 300;
+  font-size: 15px;
+    line-height: 1;
+
+}
+.titulo>b{
+  color: #333333;
+}
+.content>img{
+  width: 250px;
+  height: 170px;
+}

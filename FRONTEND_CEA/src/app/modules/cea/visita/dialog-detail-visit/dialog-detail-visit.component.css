@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lora&display=swap');
+
+h1{
+  font-family: 'Lora', serif;
+  font-size: 3em;
+  text-align: center;
+  font-weight: bolder;
+  color: #333;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+.container {
+
+  width: 100%;
+}
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 15px;
+}
+.label {
+  font-size: 1.3em;
+  font-family: 'Lora', serif;
+  width: 100%;
+  font-weight: bold;
+  color: #333;
+  margin-right: 5%;
+  padding-top: 5px;
+  text-align: start;
+}
+
+.value {
+  font-size: 0.8em;
+  font-family: 'Raleway', sans-serif;
+  text-align: left;
+  font-weight: normal;
+  margin-left: 5px;
+  width: 100%;
+  color: #555;
+}
+
+.btn {
+  background-color: #333;
+  color: #FFF;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 1em;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #444;
+}
+
+.back{
+  background-image: linear-gradient(to right, #00b4db, #0083b0);
+}

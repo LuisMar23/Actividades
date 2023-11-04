@@ -1,0 +1,69 @@
+<!-- Main Sidebar Container -->
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+
+    <!-- Brand Logo -->
+    <a [routerLink]="['/home/dashboard/']" class="cea">
+      <div class="row cea">
+        <span  >CEA</span>
+      </div>
+
+      <div class="Container">
+        <img
+        src="../../../assets/images/bien_te_fue-removebg-preview.png"
+        alt="Bientefue"
+        class="logo"
+        style="opacity: 0.8"
+      />
+      </div>
+
+
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+
+        <ul
+          class="nav nav-pills nav-sidebar"
+          data-widget="treeview"
+          role="menu"
+          data-accordion="false"
+        >
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/home/dashboard']">
+            <i class="fa fa-home nav-icon"></i>
+            <p class="larger-text">Inicio</p>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/cea/institucion']">
+            <i class="fa fa-university nav-icon" aria-hidden="true"></i>
+            <p class="larger-text">Institucion</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/cea/visita']">
+            <i class="fa fa-address-card nav-icon" aria-hidden="true"></i>
+            <p class="larger-text">Visita</p>
+          </a>
+        </li>
+        <li class="nav-item" *ngIf="user.rol=='Administrador'">
+          <a class="nav-link" [routerLink]="['/singin/usuario']">
+            <i class="fa fa-users nav-icon" aria-hidden="true"></i>
+            <p class="larger-text"> Usuario  </p>
+          </a>
+        </li>
+        <li class="nav-item" *ngIf="user.rol=='Administrador'">
+          <a class="nav-link" [routerLink]="['/cea/actividad']">
+            <i class="fa fa-book nav-icon" aria-hidden="true"></i>
+            <p class="larger-text"> Actividad  </p>
+          </a>
+        </li>
+        </ul>
+      </nav>
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+  </aside>

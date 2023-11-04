@@ -1,0 +1,165 @@
+
+.inner{
+    color: black;
+    height: 150px;
+    width: 150px;
+}
+
+
+@keyframes slideInContent {
+    0% {
+        transform: translateY(60px);
+        opacity: 3;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 2;
+    }
+}
+
+
+.content-wrapper {
+    animation: slideInContent 2s forwards;
+}
+
+
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.p-animation {
+    animation: fadeIn 1s forwards;
+}
+.inner>p{
+    font-size: 13px;
+    font-weight: 100;
+    font-family: 'Quicksand',sans-serif;
+}
+
+
+
+
+
+
+
+
+
+/* Animacion*/
+
+.small-box:hover {
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+
+/* .ic{
+
+    font-size: 50px;
+    padding-left: 100px;
+} */
+.small-box>.inner{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+}
+
+.inner{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   text-align: center;
+    flex-direction:column;
+    width: 100%;
+}
+.inner>i{
+    font-size: 20px;
+}
+
+.small-box{
+    background-color: #fcfcfc;
+    box-shadow: 0 4px 5px rgba(0,0,0, 0.2);
+    font-family: 'Quicksand', sans-serif;
+    width: 270px;
+    height: 150px;
+    padding: 0px 0px;
+    margin: 0;
+   
+}
+.small-box-footer{
+    align-items: center;
+    background-color: #fdfbfb;
+    color: #222324;
+}
+a{
+    align-items: center;
+    text-align: center;
+    text-decoration: none;
+}
+
+.small-box-footer:hover{
+    background-color: #fdfbfb;
+    color: #4c87c2;
+}
+
+.pa{
+    text-align: center;
+    background-color: #fdfbfb;
+}
+.pa:hover{
+    background-color: #fdfbfb;
+    color: #4c87c2;
+}
+
+.tarjeta{
+    background-color: #ffff;
+    box-shadow: 0 4px 10px rgba(0,0,0, 0.2);
+    font-family: 'Quicksand', sans-serif;
+    width: 350px;
+    height: auto;
+    border-radius: 10px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.tarjeta:hover{
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+.icono{
+    margin-top: 0;
+    padding: 0px 0px;
+    font-size: 55px;
+    text-align: center;
+    color: #474646;
+
+}
+
+.numero{
+    text-align: center;
+    font-weight: 800;
+    font-size: 30px;
+}
+
+
+.texto>h1{
+    margin: 0;
+    font-size: 20px;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 400;
+    line-height: 1.1;
+    color: inherit;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+
+.texto>h1>small{
+    font-size: 15px;
+    display: inline-block;
+    padding-left: 4px;
+    font-weight: 300;
+}

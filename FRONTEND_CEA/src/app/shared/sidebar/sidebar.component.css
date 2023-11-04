@@ -1,0 +1,30 @@
+
+aside{
+  background-image: linear-gradient(to right, #0238e7, #0a5c8b);
+}
+
+.logo
+{
+    margin-top: 30px;
+    background-color: #ffff;
+    width: 80%;
+    border-radius: 100%;
+    margin-bottom: 40px;
+}
+.cea{
+    margin-top: 15px;
+    text-align: center;
+    color: white;
+    text-decoration:none;
+    font-size: 27px;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+
+.larger-text {
+  font-size: 18px;
+  color: white; 
+}
+
+
+

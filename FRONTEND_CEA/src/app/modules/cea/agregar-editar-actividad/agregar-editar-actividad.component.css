@@ -1,0 +1,143 @@
+mat-form-field {
+  width: 100%;
+}
+.row {
+  display: flex;
+}
+
+.panel{
+  margin: 0;
+  color: #ffff;
+  background-color: #ee7d49;
+  padding: 20px 20px;
+}
+.panel>h1{
+  font-family: 'Quicksand',sans-serif;
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 16px;
+  color: inherit;
+}
+.column {
+  flex: 50%;
+  margin: 0px, 0px;
+}
+.error {
+  color: #B0304B;
+  margin-top: 0px;
+}
+
+.b{
+  background-color:#8ce4f4;
+  cursor:pointer;
+  color:white;
+
+}
+.c{
+  cursor:pointer;
+  background-color: #eb1f10;
+}
+.c:hover{
+  cursor:pointer;
+  background-color: hwb(19 6% 8%);
+}
+
+
+.fade {
+  transition: opacity 0.15s linear;
+}
+
+
+.example-radio-group {
+  display: flex;
+  flex-direction: column;
+  margin: 15px 0;
+  align-items: flex-start;
+}
+
+.example-radio-button {
+  margin: 5px;
+}
+
+/* **************************IMAGENES********************************** */
+
+.container {
+  text-align: center;
+  
+}
+
+h2 {
+  font-size: 24px;
+}
+
+/* Estilizar el input de archivo */
+input[type="file"] {
+  display: none;
+}
+
+.file-upload-label {
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+  margin-bottom: 10px;
+  display: inline-block;
+}
+
+.file-upload-label:hover {
+  background-color: #2980b9;
+}
+
+/* Estilizar la vista previa de imágenes */
+.preview-container {
+  display: inline-block;
+  margin: 10px;
+  padding: 10px;
+  position: relative;
+  text-align: center;
+}
+
+.preview-image {
+  max-width: 200px;
+  max-height: 200px;
+  border: 1px solid #ccc;
+  margin-bottom: 5px;
+  border-radius: 5px;
+}
+
+.preview-container>button {
+  background-color: #e63a3a;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+
+/* Estilo para el contenedor de botones en la parte superior */
+.button-container {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+mat-dialog-content{
+  width: 550px;
+}
+
+mat-dialog-actions>button{
+  color: white;
+  font-family: 'Quicksand',sans-serif;
+}
+
+.btn[disabled] {
+  /* Estilos para cuando está deshabilitado */
+  background-color: hsl(19, 76%, 77%);
+  color:#ffff;
+}
