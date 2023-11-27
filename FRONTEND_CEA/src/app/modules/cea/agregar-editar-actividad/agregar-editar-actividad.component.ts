@@ -67,28 +67,37 @@ export class AgregarEditarActividadComponent implements OnInit {
 
 
   //Subir a Cloudinary y luego ala base de datos
-  files: ExtendedFile[] = [];
- selectedImages: ExtendedFile[] = [];
+//   files: ExtendedFile[] = [];
+//  selectedImages: ExtendedFile[] = [];
 
- onFileSelected(event: any) {
-    const fileList: FileList = event.target.files;
-    if (fileList) {
-      for (let i = 0; i < fileList.length; i++) {
-        const file: File = fileList[i];
-        const extendedFile: ExtendedFile = Object.assign(file, {
-          ruta: '',
-          estado: 1
-        });
+//  onFileSelected(event: any) {
+//     const fileList: FileList = event.target.files;
+//     if (fileList) {
+//       for (let i = 0; i < fileList.length; i++) {
+//         const file: File = fileList[i];
+//         const extendedFile: ExtendedFile = Object.assign(file, {
+//           ruta: '',
+//           estado: 1
+//         });
       
-        const reader = new FileReader();
-        reader.onload = async (e: any) => {
-          extendedFile.ruta = await subirImagen(extendedFile);
-          this.selectedImages.push(extendedFile);
-        };
-        reader.readAsDataURL(file);
-      }
-    }
-  }
+//         const reader = new FileReader();
+//         reader.onload = async (e: any) => {
+//           extendedFile.ruta = await subirImagen(extendedFile);
+//           this.selectedImages.push(extendedFile);
+//         };
+//         reader.readAsDataURL(file);
+//       }
+//     }
+//   }
+files: ExtendedFile[] = [];
+selectedImages: ExtendedFile[] = [];
+
+// Función para manejar la selección de archivos
+
+
+
+
+
 // temporaryImages: ExtendedFile[] = [];
 // selectedImages: ExtendedFile[] = [];
 
@@ -119,6 +128,7 @@ export class AgregarEditarActividadComponent implements OnInit {
 //       });
 //   }
 // }
+
 
   removeImage(index: number) {
     this.selectedImages.splice(index, 1);
@@ -151,41 +161,43 @@ export class AgregarEditarActividadComponent implements OnInit {
    
   }
  
-  addEditarActividad() {
-    console.log('Hola')
-    if (this.form.invalid) {
-      return;
-    }
-    const actividad: IActividad = {
-      nombre: this.form.value.nombre,
-      objetivo: this.form.value.objetivo,
-      descripcion: this.form.value.descripcion,
-      fecha: this.form.value.fecha,
-      lugar: this.form.value.lugar,
-      estado: 1,
-      imagenes:this.selectedImages
+  //  addEditarActividad() {
+  //   console.log('Hola')
+  //   if (this.form.invalid) {
+  //     return;
+  //   }
+  //   const actividad: IActividad = {
+  //     nombre: this.form.value.nombre,
+  //     objetivo: this.form.value.objetivo,
+  //     descripcion: this.form.value.descripcion,
+  //     fecha: this.form.value.fecha,
+  //     lugar: this.form.value.lugar,
+  //     estado: 1,
+  //     imagenes:this.selectedImages
 
-    };
-    // console.log(actividad);
-    if (this.id==undefined) {
-      this._actividad.agregarActividad(actividad).subscribe((resp) => {
-        this._alertaservice.mensajeAgregar("Acticvidad agregada");
+  //   };
+  //   // console.log(actividad);
+  //   if (this.id==undefined) {
+  //     this._actividad.agregarActividad(actividad).subscribe((resp) => {
+  //      // Obtén el archivo que desees procesar
+  //       this._alertaservice.mensajeAgregar("Acticvidad agregada");
        
-      }, (e) => {
-        console.log(e.error)
-      });
-      this.selectedImages.splice(0, this.selectedImages.length);
-    }
-    else{
-      this._actividad.editarActividad(this.id,actividad).subscribe(r=>{
-        this._alertaservice.mensajeAgregar("Actividad modificada");
-      });
-      this.selectedImages.splice(0, this.selectedImages.length);
-    }
-    this._actividad.obtenerActividades();
-    this.dialogRef.close(true);
+  //     }, (e) => {
+  //       console.log(e.error)
+  //     });
+  //     this.selectedImages.splice(0, this.selectedImages.length);
+  //   }
+  //   else{
+  //     this._actividad.editarActividad(this.id,actividad).subscribe(r=>{
+        
+  //       this._alertaservice.mensajeAgregar("Actividad modificada");
+  //     });
+  //     this.selectedImages.splice(0, this.selectedImages.length);
+  //   }
+  //   this._actividad.obtenerActividades();
+  //   this.dialogRef.close(true);
   
-  };
+  // };
 
   cancelar() {
     this.dialogRef.close(false);
@@ -222,6 +234,68 @@ export class AgregarEditarActividadComponent implements OnInit {
   //     console.error('Error uploading images:', error);
   //   }
   // }
+  async  addEditarActividad() {
+    console.log('Hola');
+    if (this.form.invalid) {
+      return;
+    }
   
+    const actividad: IActividad = {
+      nombre: this.form.value.nombre,
+      objetivo: this.form.value.objetivo,
+      descripcion: this.form.value.descripcion,
+      fecha: this.form.value.fecha,
+      lugar: this.form.value.lugar,
+      estado: 1,
+      imagenes: this.selectedImages
+    };
+  
+    if (this.id == undefined) {
+      this._actividad.agregarActividad(actividad).subscribe((resp) => {
+        this._alertaservice.mensajeAgregar("Actividad agregada");
+        this._actividad.obtenerActividades();
+        this.dialogRef.close(true);
+      }, (e) => {
+        console.log(e.error);
+      });
+    } else {
+      this._actividad.editarActividad(this.id, actividad).subscribe((r) => {
+        this._alertaservice.mensajeAgregar("Actividad modificada");
+        this._actividad.obtenerActividades();
+        this.dialogRef.close(true);
+      });
+    }
+  }
+  
+  async subirImagenesYAceptar() {
+    // Sube las imágenes a Cloudinary
+    const urls = await Promise.all(this.selectedImages.map(subirImagen));
+    // Asigna las URLs a las imágenes en selectedImages
+    for (let i = 0; i < urls.length; i++) {
+      this.selectedImages[i].ruta = urls[i];
+    }
+    // Continúa con la lógica de addEditarActividad
+    this.addEditarActividad();
+  }
+  
+  onFileSelected(event: any) {
+    const fileList: FileList = event.target.files;
+    if (fileList) {
+      for (let i = 0; i < fileList.length; i++) {
+        const file: File = fileList[i];
+        const extendedFile: ExtendedFile = Object.assign(file, {
+          ruta: '',
+          estado: 1
+        });
+  
+        const reader = new FileReader();
+        reader.onload = (e: any) => {
+          extendedFile.ruta = e.target.result;
+          this.selectedImages.push(extendedFile); // Almacena el objeto extendedFile en selectedImages
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+  }
 }
    

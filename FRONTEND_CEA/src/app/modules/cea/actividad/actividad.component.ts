@@ -104,6 +104,7 @@ export class ActividadComponent {
       }
     });
   }
+  
 
   darBajaActividad(us:IActividad, accion: number){
     this.id=us.id;

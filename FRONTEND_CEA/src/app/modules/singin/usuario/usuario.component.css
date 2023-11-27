@@ -4,14 +4,21 @@
 
 }
 .b{
-    margin-right: 5px;
-    cursor:pointer;
-    width: 15%;
-
+  background-color: #2898ee;
+  margin-right: 5px;
+  cursor:pointer;
+  color:#ffff;
+  width: 15%;
 }
 .c{
-    cursor:pointer;
-    width: 15%;
+  background-color:#f44336;
+  color:white;
+  cursor:pointer;
+  width: 15%;
+}
+.c:hover{
+  cursor:pointer;
+  background-color: hwb(19 6% 8%);
 }
 
 .btn-primary {

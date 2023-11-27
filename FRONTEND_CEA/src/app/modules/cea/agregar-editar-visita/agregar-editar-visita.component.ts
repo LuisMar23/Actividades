@@ -105,7 +105,7 @@ export class AgregarEditarVisitaComponent implements OnInit {
   };
 
   obtenerActividad(){
-    this._actividadService.obtenerActivos().subscribe((data)=>{
+    this._actividadService.obtenerActividades().subscribe((data)=>{
       this.ListaActividad = data;
       this.dataActividad=data;
     })

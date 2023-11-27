@@ -1,5 +1,6 @@
-<h2 mat-dialog-title>{{ operacion }} Visita</h2>
-
+<div class="panel">
+  <h1 mat-dialog-title>{{ operacion }} Visita</h1>
+</div>
 <form [formGroup]="form" (ngSubmit)="agregarVisita()">
   <mat-dialog-content class="mat-typography">
     <div class="row">
@@ -196,8 +197,8 @@
     </div>
   </mat-dialog-content>
   <mat-dialog-actions align="end">
-    <button type="submit"  [disabled]="form.invalid"  class="btn btn-info b" mat-button cdkFocusInitial>Aceptar</button>
-    <button type="button" class="btn btn-warning c" (click)="cancelar()" mat-button mat-dialog-close>Cancelar</button>
+    <button type="submit"  [disabled]="form.invalid"  class="btn btn-info b"  cdkFocusInitial>Aceptar</button>
+    <button type="button" class="btn btn-warning c" (click)="cancelar()"  mat-dialog-close>Cancelar</button>
 </mat-dialog-actions>
 </form>
 

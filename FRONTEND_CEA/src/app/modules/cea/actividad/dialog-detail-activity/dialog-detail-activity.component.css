@@ -1,7 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Lora&display=swap');
 
 
+@import url('https://fonts.googleapis.com/css2?family=Quicksand&family=Roboto+Flex:wght@300&display=swap');
 
 .detail{
   background-color: #ffff;
@@ -24,7 +23,7 @@
 
 mat-dialog-content {
   width: 650px;
-  height: 450px;
+  height: auto;
   padding: 0;
   margin: 0;
 }
@@ -106,6 +105,14 @@ mat-dialog-content {
   height: auto; 
 }  */
 .im>img{
-  width: 200px;
+  width: 300px;
   height: 200px;
+  padding: 10px 10px ;
+}
+
+.im{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
 }

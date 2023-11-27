@@ -6,6 +6,11 @@
 }
 
 
+.card:hover{
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+   
+}
+
 @keyframes slideInContent {
     0% {
         transform: translateY(60px);
@@ -41,11 +46,25 @@
     font-weight: 100;
     font-family: 'Quicksand',sans-serif;
 }
+.titulo{
+    font-family: 'Quicksand', sans-serif;
+    font-size: 20px;
+    padding-top: 20px;
+    margin: 20px;
+    padding-bottom: 5px;
+    padding-left: 0px;
+  }
 
+.container-sm{
+   
+    padding: 20px 20px;
 
+}
 
-
-
+.fo{
+    background-color: #f2f2f2;
+    text-align: center;
+}
 
 
 

@@ -1,7 +1,7 @@
 <div class="panel">
-    <h1>  {{operacion}} Institucion </h1>
-  </div>
-<form [formGroup]="form" (ngSubmit)="addEditarInstitucion()" >
+    <h1> {{operacion}} Institucion </h1>
+</div>
+<form [formGroup]="form" (ngSubmit)="addEditarInstitucion()">
     <mat-dialog-content>
 
         <mat-form-field appearance="fill">
@@ -9,24 +9,28 @@
             <input matInput formControlName="nombre">
         </mat-form-field>
         <div class="error">
-            <span *ngIf="form.get('nombre')?.hasError('required') && form.get('nombre')?.touched ">El nombre es un campo <strong>requerido</strong></span>
+            <span *ngIf="form.get('nombre')?.hasError('required') && form.get('nombre')?.touched ">El nombre es un campo
+                <strong>requerido</strong></span>
         </div>
         <br>
         <mat-form-field appearance="fill">
             <mat-label>Tipo</mat-label>
             <mat-select formControlName="tipo">
-              <mat-option  *ngFor="let ins of institutions" value="{{ins}}">{{ins}}</mat-option>
+                <mat-option *ngFor="let ins of institutions" value="{{ins}}">{{ins}}</mat-option>
             </mat-select>
         </mat-form-field>
         <div class="error">
-            <span *ngIf="form.get('tipo')?.hasError('required')&& form.get('tipo')?.touched ">Seleccione un tipo es <strong>requerido</strong></span>
+            <span *ngIf="form.get('tipo')?.hasError('required')&& form.get('tipo')?.touched ">Seleccione un tipo es
+                <strong>requerido</strong></span>
         </div>
 
     </mat-dialog-content>
 
     <mat-dialog-actions align="end">
-      <button  [disabled]="form.invalid" type="submit" class="btn btn-info b" mat-button cdkFocusInitial>Aceptar</button>
-      <button type="button" class="btn btn-warning c" (click)="cancelar()" mat-button mat-dialog-close>Cancelar</button>
+        <button [disabled]="form.invalid" type="submit" class="btn b" 
+            cdkFocusInitial>Aceptar</button>
+        <button type="button" class="btn  c" (click)="cancelar()" 
+            mat-dialog-close>Cancelar</button>
     </mat-dialog-actions>
 
 </form>

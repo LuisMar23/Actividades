@@ -50,25 +50,51 @@ namespace API_SERVER_CEA.Controllers
 
 
         //}
-        public  IActionResult Login(LoginUser userLogin)
+        public IActionResult Login(LoginUser userLogin)
         {
-            var user = Authenticate(userLogin);
-            if (user != null)
+            try
             {
-              
-                if (user.estadoUsuario != 1)
+                var user = Authenticate(userLogin);
+                if (user != null)
                 {
-                    return BadRequest(new { estado = $"El usuario {userLogin.UserName}  se encuentra desactivado" });
+                    if (user.estadoUsuario != 1)
+                    {
+                        return StatusCode(StatusCodes.Status403Forbidden, new { estado = $"El usuario {userLogin.UserName} se encuentra desactivado" });
+                    }
+                    else
+                    {
+                        var token = Generar(user);
+                        return Ok(token);
+                    }
                 }
-                else
-                {
-                    var token = Generar(user);
-                    return Ok(token);
-                }
-                
+
+                return StatusCode(StatusCodes.Status401Unauthorized, new { estado = "Las credenciales de sesión del usuario ingresado fueron incorrectas. Verifique e ingrese nuevamente." });
             }
-            return BadRequest(new { estado = "Las credenciales de sesion del usuario ingresado fueron incorrectas verifique e ingrese nuevamente" });
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new { error = "Ocurrió un error en el servidor." });
+            }
         }
+
+        //public  IActionResult Login(LoginUser userLogin)
+        //{
+        //    var user = Authenticate(userLogin);
+        //    if (user != null)
+        //    {
+              
+        //        if (user.estadoUsuario != 1)
+        //        {
+        //            return BadRequest(new { estado = $"El usuario {userLogin.UserName}  se encuentra desactivado" });
+        //        }
+        //        else
+        //        {
+        //            var token = Generar(user);
+        //            return Ok(token);
+        //        }
+                
+        //    }
+        //    return BadRequest(new { estado = "Las credenciales de sesion del usuario ingresado fueron incorrectas verifique e ingrese nuevamente" });
+        //}
         [HttpGet]
         public IActionResult Get()
         {

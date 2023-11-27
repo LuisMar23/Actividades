@@ -1,61 +1,57 @@
-@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Lora&display=swap');
 
-h1{
-  font-family: 'Lora', serif;
-  font-size: 3em;
+@import url('https://fonts.googleapis.com/css2?family=Quicksand&family=Roboto+Flex:wght@300&display=swap');
+.detail{
+  background-color: #ffff;
+}
+.panel{
+  margin: 0;
+  color: #ffff;
+  background-color: #4cac54;
+  padding: 20px 20px;
+  
+  
+}
+.panel>h1{
+  font-family: 'Quicksand',sans-serif;
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 16px;
+  color: inherit;
+}
+
+mat-dialog-content {
+  width: 570px;
+  height: 300px;
+  padding: 0;
+  margin: 0;
+}
+.titulo{
   text-align: center;
-  font-weight: bolder;
-  color: #333;
-  margin-top: 30px;
-  margin-bottom: 30px;
-}
-.container {
-
-  width: 100%;
-}
-.row {
-  display: flex;
-  flex-wrap: wrap;
-  margin-bottom: 15px;
-}
-.label {
-  font-size: 1.3em;
-  font-family: 'Lora', serif;
-  width: 100%;
-  font-weight: bold;
-  color: #333;
-  margin-right: 5%;
-  padding-top: 5px;
-  text-align: start;
+  text-transform: uppercase;
+  margin-bottom: 0.5em;
+  color:#3c8dbc ;
+  font-weight: 700;
 }
 
-.value {
-  font-size: 0.8em;
-  font-family: 'Raleway', sans-serif;
-  text-align: left;
-  font-weight: normal;
-  margin-left: 5px;
-  width: 100%;
-  color: #555;
+.datos{
+  font-family: 'Quicksand',sans-serif;
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 13px;
+  font-weight: 500;
+  color: #444;
 }
+.datos1{
 
-.btn {
-  background-color: #333;
-  color: #FFF;
-  border: none;
-  border-radius: 5px;
-  padding: 10px 20px;
-  font-size: 1em;
-  cursor: pointer;
-  margin-top: 20px;
-  transition: background-color 0.3s ease;
+  font-family: 'Quicksand',sans-serif;
+
+  font-size: 13px;
+  font-weight: 400;
+  color: #444;
 }
-
-.btn:hover {
-  background-color: #444;
-}
-
-.back{
-  background-image: linear-gradient(to right, #00b4db, #0083b0);
+.co>span{
+  margin-left: 40px;
+  margin-right: 40px;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }

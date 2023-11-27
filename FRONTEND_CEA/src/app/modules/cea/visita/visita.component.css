@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand&family=Roboto+Flex:wght@300&display=swap');
 .buttons{
     text-align: right;
     padding-right: 10px;
@@ -9,6 +10,10 @@ option{
   margin-right: 5px;
   cursor:pointer;
   width: 15%;
+  background-color:#ef5350;
+  border-color:#ef5350;
+  color: #ffff;
+  
 }
 .b{
     margin-right: 5px;
@@ -22,7 +27,15 @@ option{
 .st{
   width: 250px;
 }
-
+.f{
+  background-color: #e57373;
+  float:left;
+}
+.btn{
+  font-family:Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  color: #ffff;
+}
 .btn-primary {
     --bs-btn-color: #fff;
     --bs-btn-bg: #b58900;

@@ -19,12 +19,12 @@
                     Limpiar
                   </button>
 
-                  <select class="btn btn-danger a" (change)="dataVisita($event)">
-                    <option value="" selected >Filtrar</option>
-                    <option value="Reunion">Reunion</option>
-                    <option value="Talleres Ambientales Internos">Talleres Ambientales Internos</option>
-                    <option value="Talleres Ambientales Externos">Talleres Ambientales Externos</option>
-                    <option value="Campañas Ambientales">Campañas Ambientales</option>
+                  <select class="btn a" (change)="dataVisita($event)">
+                    <option value="" selected class="f" >Filtrar</option>
+                    <option value="Reunion" class="f" >Reunion</option>
+                    <option value="Talleres Ambientales Internos" class="f" >Talleres Ambientales Internos</option>
+                    <option value="Talleres Ambientales Externos" class="f" >Talleres Ambientales Externos</option>
+                    <option value="Campañas Ambientales" class="f" >Campañas Ambientales</option>
                   </select>
 
                   <input type="button" class="btn btn-success b" value="Crear" mat-raised-button
@@ -64,7 +64,7 @@
 
                   <ng-container matColumnDef="Genero">
                     <th mat-header-cell *matHeaderCellDef> Genero </th>
-                    <td mat-cell *matCellDef="let visi"> {{visi.persona.genero}} </td>
+                    <td mat-cell *matCellDef="let visi"> {{visi.persona.genero==1?"Masculino":"Femenino"}} </td>
                   </ng-container>
 
                   <ng-container matColumnDef="Celular">

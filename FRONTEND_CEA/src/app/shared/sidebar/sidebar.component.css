@@ -1,8 +1,8 @@
 
 aside{
-  background-image: linear-gradient(to right, #0238e7, #0a5c8b);
+  /* background-color: #00db9e; */
+  background-color: #0c64fc;
 }
-
 .logo
 {
     margin-top: 30px;
@@ -23,8 +23,12 @@ aside{
 
 .larger-text {
   font-size: 18px;
+  font-weight: 500;
   color: white; 
+ 
 }
 
-
+.fa{
+  color: #ffffff;
+}
 

@@ -12,6 +12,9 @@ namespace API_SERVER_CEA.Modelo
         [Required(ErrorMessage = "Este campo no debe estar vacio")]
         public string tipo { get; set; }
 
+        [Required]
+        public DateTime fecha { get; set; }
+
         public int estado { get; set; }
 
         public int InstitucionId { get; set; }
@@ -22,6 +25,7 @@ namespace API_SERVER_CEA.Modelo
 
         public int PersonaId { get; set; }
         public Persona? Persona { get; set; }
+
 
     }
 }

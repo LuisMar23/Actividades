@@ -92,6 +92,8 @@ export class AgregarEditarUsuarioComponent implements OnInit {
     if (this.id == undefined) {
       this.UsuarioService.enviarUsuario(usuario).subscribe(() => {
         this._alertaService.mensajeAgregar("Usuario agregado");
+        this.UsuarioService.obtenerUsuarios();
+        this.dialogRef.close(true);
       });
       this.dialogRef.close();
 
@@ -99,6 +101,8 @@ export class AgregarEditarUsuarioComponent implements OnInit {
       console.log(usuario)
       this.UsuarioService.modificarUsuario(this.id, usuario).subscribe(r => {
         this._alertaService.mensajeAgregar("Usuario modificado");
+        this.UsuarioService.obtenerUsuarios();
+        this.dialogRef.close(true);
       });
       this.dialogRef.close(true);
     }

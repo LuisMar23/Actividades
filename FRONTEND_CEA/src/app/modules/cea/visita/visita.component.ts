@@ -72,7 +72,6 @@ export class VisitaComponent implements OnInit,AfterViewInit {
 
   openDialogDetail(visita?:IVisita) {
     const dialogRef = this.dialog1.open(DialogDetailVisitComponent,{
-      width: '60%',
       disableClose: false,
       data:{visita:visita},
     });

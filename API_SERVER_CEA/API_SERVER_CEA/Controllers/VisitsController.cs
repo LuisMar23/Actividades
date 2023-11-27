@@ -137,7 +137,72 @@ namespace API_SERVER_CEA.Controllers
             }
         }
 
-       
+
+        //[HttpPost("reporte")]
+        //[Authorize(Roles = "Administrador")]
+        //public IActionResult Exportar_Excel(Reporte reporte)
+        //{
+        //    var query = from v in _context.Visita
+        //                join p in this._context.Persona on v.PersonaId equals p.Id
+        //                join i in this._context.Institucion on v.InstitucionId equals i.Id
+        //                join a in this._context.Activity on v.id equals a.Id
+        //                where a.fecha >= reporte.FechaInicio &&
+        //                    a.fecha <= reporte.FechaFinal && v.estado == 1 && v.tipo == reporte.Tipo
+        //                select new DataVisit
+        //                {
+        //                    actividad = a.nombre,
+        //                    observaciones = v.observaciones,
+        //                    lugar = a.lugar,
+        //                    tipo = v.tipo,
+        //                    fecha = a.fecha,
+        //                    nombrePersona = p.nombrePersona,
+        //                    apellidoPersona = p.apellidoPersona,
+        //                    edad = p.edadPersona,
+        //                    ciPersona = p.ciPersona,
+        //                    celularPersona = p.celularPersona,
+        //                    genero = p.genero == 1 ? "Masculino":"Femenino",
+        //                    barriozona = p.barrio_zona,
+        //                    nombreInstitucion=i.Nombre,
+        //                };
+        //    //Crea un tabla a partir del modelo visita
+        //    DataTable? tabla = new DataTable(typeof(DataVisit).Name);
+
+        //    //Toma las propiedades de Visita y las asigna a la variable props
+        //    PropertyInfo[] props = typeof(DataVisit).GetProperties(BindingFlags.Public | BindingFlags.Instance);
+
+        //    //Añade las propiedades alas columnas en base a su tipo(string,int,etc)
+        //    foreach (var prop in props)
+        //    {
+        //        tabla.Columns.Add(prop.Name, prop.PropertyType);
+        //    }
+
+        //    var values = new object[props.Length];
+        //    //Recorre la consulta y asigna sus valores alas columnas 
+        //    foreach (var item in query)
+        //    {
+
+        //        for (var i = 0; i < props.Length; i++)
+        //        {
+        //            values[i] = props[i].GetValue(item, null);
+        //        }
+        //        tabla.Rows.Add(values);
+
+        //    }
+        //    using (var inst = new XLWorkbook())
+        //    {
+        //        tabla.TableName = "VISITA " + reporte.Tipo.ToUpper();
+        //        var hoja = inst.Worksheets.Add(tabla);
+        //        hoja.ColumnsUsed();
+
+        //        using (var memoria = new MemoryStream())
+        //        {
+        //            inst.SaveAs(memoria);
+        //            var nombreExcel = string.Concat("Reporte Visita", DateTime.Now.ToString(), ".xlsx");
+        //            return File(memoria.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", nombreExcel);
+        //        }
+        //    }
+        //}
+
         [HttpPost("reporte")]
         [Authorize(Roles = "Administrador")]
         public IActionResult Exportar_Excel(Reporte reporte)
@@ -147,7 +212,7 @@ namespace API_SERVER_CEA.Controllers
                         join i in this._context.Institucion on v.InstitucionId equals i.Id
                         join a in this._context.Activity on v.id equals a.Id
                         where a.fecha >= reporte.FechaInicio &&
-                            a.fecha <= reporte.FechaFinal && v.estado == 1 && v.tipo == reporte.Tipo
+                            reporte.FechaFinal<=a.fecha && v.estado == 1 && v.tipo == reporte.Tipo
                         select new DataVisit
                         {
                             actividad = a.nombre,
@@ -160,38 +225,48 @@ namespace API_SERVER_CEA.Controllers
                             edad = p.edadPersona,
                             ciPersona = p.ciPersona,
                             celularPersona = p.celularPersona,
-                            genero = p.genero == 1 ? "Masculino":"Femenino",
+                            genero = p.genero == 1 ? "Masculino" : "Femenino",
                             barriozona = p.barrio_zona,
-                            nombreInstitucion=i.Nombre,
+                            nombreInstitucion = i.Nombre,
                         };
-            //Crea un tabla a partir del modelo visita
-            DataTable? tabla = new DataTable(typeof(DataVisit).Name);
 
-            //Toma las propiedades de Visita y las asigna a la variable props
+            DataTable tabla = new DataTable(typeof(DataVisit).Name);
+
             PropertyInfo[] props = typeof(DataVisit).GetProperties(BindingFlags.Public | BindingFlags.Instance);
 
-            //Añade las propiedades alas columnas en base a su tipo(string,int,etc)
             foreach (var prop in props)
             {
-                tabla.Columns.Add(prop.Name, prop.PropertyType);
+                if (prop.Name != "Id")
+                {
+                    tabla.Columns.Add(prop.Name, prop.PropertyType);
+                }
             }
 
             var values = new object[props.Length];
-            //Recorre la consulta y asigna sus valores alas columnas 
             foreach (var item in query)
             {
-
                 for (var i = 0; i < props.Length; i++)
                 {
                     values[i] = props[i].GetValue(item, null);
                 }
                 tabla.Rows.Add(values);
-
             }
+
+            int totalRegistros = query.Count();
+            tabla.Columns.Add("Total Registros", typeof(int));
+            tabla.Rows.Add();
+            tabla.Rows[tabla.Rows.Count - 1]["Total Registros"] = totalRegistros;
+
             using (var inst = new XLWorkbook())
             {
                 tabla.TableName = "VISITA " + reporte.Tipo.ToUpper();
                 var hoja = inst.Worksheets.Add(tabla);
+
+                // Cambiar el estilo de las columnas
+                var columnas = hoja.Columns();
+                columnas.Style.Fill.BackgroundColor = XLColor.Yellow; // Cambia el color de fondo de las columnas
+                columnas.Style.Font.Bold = true; // Hace que el texto de las columnas sea negrita
+
                 hoja.ColumnsUsed();
 
                 using (var memoria = new MemoryStream())
@@ -202,6 +277,8 @@ namespace API_SERVER_CEA.Controllers
                 }
             }
         }
+
+
         [HttpGet("total")]
         public async Task<ActionResult<List<Visita>>> totalVisitas()
         {
