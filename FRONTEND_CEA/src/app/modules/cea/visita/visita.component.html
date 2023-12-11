@@ -86,7 +86,10 @@
                     <th mat-header-cell *matHeaderCellDef> Observaciones </th>
                     <td mat-cell *matCellDef="let visi"> {{visi.observaciones}} </td>
                   </ng-container>
-
+                  <ng-container matColumnDef="Fecha">
+                    <th mat-header-cell *matHeaderCellDef> Fecha </th>
+                    <td mat-cell *matCellDef="let visi">{{ visi.actividad.fecha.slice(5, 7) }}/{{ visi.actividad.fecha.slice(8, 10) }}/{{ visi.actividad.fecha.slice(0, 4) }}</td>
+                  </ng-container>
                   <ng-container matColumnDef="Estado">
                     <th mat-header-cell *matHeaderCellDef> Estado </th>
                     <td mat-cell *matCellDef="let visi">
@@ -105,10 +108,10 @@
                         <i class="fa fa-pen"> </i>
                       </button>
                       &nbsp;
-                      <button (click)="darBajaVisita(visi, 0)" class="btn btn-danger" *ngIf="visi.estado == 1">
+                      <button (click)="eliminadoLogico(visi, 0)" class="btn btn-danger" *ngIf="visi.estado == 1">
                         <i class="fa fa-trash"> </i>
                       </button>
-                      <button (click)="darBajaVisita(visi, 1)" class="btn btn-success" *ngIf="visi.estado == 0">
+                      <button (click)="eliminadoLogico(visi, 1)" class="btn btn-success" *ngIf="visi.estado == 0">
                         <i class="fa fa-check"> </i>
                       </button>
                       &nbsp;

@@ -19,7 +19,7 @@ import { LoginService } from 'src/app/core/services/login.service';
 })
 export class VisitaComponent implements OnInit,AfterViewInit {
   id:number| undefined;
-  displayedColumns:string[]=['Id','Nombre','Apellido','Edad','CI','Genero','Celular','Institucion','Tipo', 'Estado', 'Opciones'];
+  displayedColumns:string[]=['Id','Nombre','Apellido','Edad','CI','Genero','Celular','Institucion','Tipo','Fecha', 'Estado', 'Opciones'];
   private visitas!:IVisita[];
   private datos!:IVisita[];
   private visi!:IVisita[];
@@ -56,10 +56,17 @@ export class VisitaComponent implements OnInit,AfterViewInit {
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
-
+  
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  
+    // Aplicar filtro adicional por nombre
+    const nombreFilterValue = filterValue.trim().toLowerCase();
+    this.dataSource.filterPredicate = (data, filter) => {
+      return data.persona.nombrePersona.toLowerCase().includes(filter);
+    };
+    this.dataSource.filter = nombreFilterValue;
   }
 
   //MODAL REPORTES

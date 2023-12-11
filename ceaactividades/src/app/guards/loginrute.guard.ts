@@ -12,7 +12,7 @@ export class LoginruteGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
       if (this.leerusuario.existUser()) {
-        this.router.navigate(['home/dashboard'])
+        this.router.navigate(['cea-actividades/actividades'])
         return false;
 
       }

@@ -17,7 +17,7 @@ namespace API_SERVER_CEA.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    //[Authorize]
+    [Authorize]
     public class ActivityController : Controller
     {
    
@@ -76,8 +76,31 @@ namespace API_SERVER_CEA.Controllers
 
             return await contexto.Activity.ToListAsync();
         }
+        [HttpGet("obtenerActividadesActivas")]
+        public async Task<ActionResult<List<ActivityModel>>> actividadesActivas()
+        {
 
-       
+            var datos = (from a in this.contexto.Activity
+                         join i in this.contexto.Images on a.Id equals i.idActivity where a.estado==1
+                         select new ActivityModel
+                         {
+                             Id = a.Id,
+                             nombre = a.nombre,
+                             objetivo = a.objetivo,
+                             descripcion = a.descripcion,
+                             lugar = a.lugar,
+                             fecha = a.fecha,
+                             estado = a.estado,
+                             Imagenes = a.Imagenes
+                         }).ToList();
+
+            var datosFiltrados = datos.GroupBy(a => a.Id)
+                                      .Select(g => g.First())
+                                      .ToList();
+
+            return Ok(datosFiltrados);
+        }
+
         [HttpPut("{id:int}")]
         public async Task<ActionResult<List<ActivityModel>>> EditarActividades(int id, ActivityModel activity)
         {
@@ -104,59 +127,8 @@ namespace API_SERVER_CEA.Controllers
                 await contexto.SaveChangesAsync();
                 return Ok();
             }
-            //ActivityModel act = await contexto.Activity.Include(a => a.Imagenes).FirstOrDefaultAsync(x => x.Id == id);
-            //if (act == null)
-            //{
-            //    return BadRequest("No se encontró la actividad");
-            //}
-            //else
-            //{
-            //    if (act.Imagenes != null)
-            //    {
-            //        contexto.Images.RemoveRange(act.Imagenes);
-            //    }
-
-            //    act.nombre = activity.nombre;
-            //    act.objetivo = activity.objetivo;
-            //    act.descripcion = activity.descripcion;
-            //    act.lugar = activity.lugar;
-            //    act.fecha = activity.fecha;
-            //    act.estado = activity.estado;
-            //    act.Imagenes = activity.Imagenes;
-
-            //    try
-            //    {
-            //        await contexto.SaveChangesAsync();
-            //        return Ok();
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        // Manejar la excepción según tus necesidades
-            //        return BadRequest("Error al guardar los cambios");
-            //    }
-            //}
+          
         }
-        //[HttpGet("{id:int}")]
-
-        //public async Task<ActionResult<List<ActivityModel>>> ObtenerActividad(int id)
-        //{
-        //    var datos =  await (from a in this.contexto.Activity
-        //                join i in this.contexto.Images on a.Id equals i.idActivity
-        //                where a.Id == id 
-        //                select new ActivityModel
-        //                {
-        //                    Id = a.Id,
-        //                    nombre = a.nombre,
-        //                    objetivo = a.objetivo,
-        //                    descripcion = a.descripcion,
-        //                    lugar = a.lugar,
-        //                    fecha = a.fecha,
-        //                    estado = a.estado,
-        //                    Imagenes = a.Imagenes
-        //                }).FirstOrDefaultAsync();
-        //    return Ok(datos);
-
-        //}
         [HttpGet("{id:int}")]
         public async Task<ActionResult<List<ActivityModel>>> ObtenerActividad(int id)
         {
@@ -225,10 +197,10 @@ namespace API_SERVER_CEA.Controllers
                 return BadRequest();
             }
         }
-        [HttpGet("totalpersonas")]
-        public async Task<ActionResult<int>> totalpersonasActividades(int actividadId)
+        [HttpGet("totalPersonas/{id}")]
+        public async Task<ActionResult<cantidadPersonasGenero>> totalPersonasGenero(int id)
         {
-            try
+            if (int.TryParse(id.ToString(), out int actividadId))
             {
                 var cantidadPersonas = await contexto.Visita
                     .Where(v => v.ActividadId == actividadId)
@@ -236,51 +208,82 @@ namespace API_SERVER_CEA.Controllers
                     .Distinct()
                     .CountAsync();
 
-                return Ok(cantidadPersonas);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, "Ocurrió un error en el servidor.");
-            }
-        }
-
-        [HttpGet("totalPersonasGenero")]
-        public async Task<ActionResult<int>> totalPersonasGenero(int actividadId)
-        {
-            try
-            {
-                var cantidadPersonas = await contexto.Visita
-                 .Where(v => v.ActividadId == actividadId)
-                 .Select(v => v.PersonaId)
-                 .Distinct()
-                 .CountAsync();
                 var cantidadVarones = await contexto.Visita
-                    .Where(v => v.ActividadId == actividadId && v.Persona.genero == 1)
-                    .Select(v => v.PersonaId)
-                    .Distinct()
+                     .Where(v => v.ActividadId == actividadId)
+                     .Join(contexto.Persona,
+                     visita => visita.PersonaId,
+                     persona => persona.Id,
+                     (visita, persona) => new { Visita = visita, Persona = persona })
+                    .Where(vp => vp.Visita.Persona.genero == 1)
+                    .Select(vp => vp.Visita.PersonaId)
+                     .Distinct()
                     .CountAsync();
 
                 var cantidadMujeres = await contexto.Visita
-                    .Where(v => v.ActividadId == actividadId && v.Persona.genero == 2)
-                    .Select(v => v.PersonaId)
+                    .Where(v => v.ActividadId == actividadId)
+                    .Join(contexto.Persona,
+                          visita => visita.PersonaId,
+                          persona => persona.Id,
+                          (visita, persona) => new { Visita = visita, Persona = persona })
+                    .Where(vp => vp.Visita.Persona.genero == 0)
+                    .Select(vp => vp.Visita.PersonaId)
                     .Distinct()
                     .CountAsync();
 
                 var resultado = new cantidadPersonasGenero
                 {
-                    CantidadTotal=cantidadPersonas,
+                    CantidadTotal = cantidadPersonas,
                     CantidadVarones = cantidadVarones,
                     CantidadMujeres = cantidadMujeres
                 };
 
                 return Ok(resultado);
             }
-            catch (Exception ex)
+            else
             {
-                // Manejar el error adecuadamente
-                return StatusCode(500, "Ocurrió un error en el servidor.");
+                return BadRequest("Invalid ID");
             }
         }
+
+        //[HttpGet("totalPersonas/{id:int}")]
+        //public async Task<ActionResult<cantidadPersonasGenero>> totalPersonasGenero(int actividadId)
+        //{
+
+        //    var cantidadPersonas = await contexto.Visita
+        //        .Where(v => v.ActividadId == actividadId)
+        //        .Select(v => v.PersonaId)
+        //        .Distinct()
+        //        .CountAsync();
+        //    var cantidadVarones = await contexto.Visita
+        //             .Where(v => v.ActividadId == actividadId)
+        //             .Join(contexto.Persona,
+        //             visita => visita.PersonaId,
+        //              persona => persona.Id,
+        //             (visita, persona) => new { Visita = visita, Persona = persona })
+        //            .Where(vp => vp.Visita.Persona.genero == 1)
+        //            .Select(vp => vp.Visita.PersonaId)
+        //             .Distinct()
+        //            .CountAsync();
+
+        //    var cantidadMujeres = await contexto.Visita
+        //        .Where(v => v.ActividadId == actividadId)
+        //        .Join(contexto.Persona,
+        //              visita => visita.PersonaId,
+        //              persona => persona.Id,
+        //              (visita, persona) => new { Visita = visita, Persona = persona })
+        //        .Where(vp => vp.Visita.Persona.genero == 2)
+        //        .Select(vp => vp.Visita.PersonaId)
+        //        .Distinct()
+        //        .CountAsync();
+        //    var resultado = new cantidadPersonasGenero
+        //    {
+        //        CantidadTotal = cantidadPersonas,
+        //        CantidadVarones = cantidadVarones,
+        //        CantidadMujeres = cantidadMujeres
+        //    };
+
+        //    return Ok(resultado);
+        //}
 
     }
 }

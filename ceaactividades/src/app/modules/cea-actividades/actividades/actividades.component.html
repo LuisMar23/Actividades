@@ -1,4 +1,5 @@
 <app-navbar></app-navbar>
+
 <div class="panel-actividades">
     <div class="container">
         <h1 class="titulo"><b>Histórico </b> <small>actividades registradas</small> </h1>
@@ -13,7 +14,7 @@
             <div class="col-sm-6">
                 <div class="dataTables_length">
                     <label class="d-flex align-items-center">Cantidad de Actividades {{ totalPosiciones}}
-                        
+
                     </label>
                 </div>
             </div>
@@ -21,29 +22,35 @@
                 <div class="dataTables_filter">
                     <label class="d-flex align-items-center">Buscar:
                         <input type="search" class="form-control bus" placeholder=""
-                            aria-controls="historico-registro-actividades" (keyup)="buscador($event)" >
+                            aria-controls="historico-registro-actividades" (keyup)="buscador($event)">
                     </label>
                 </div>
             </div>
         </div>
         <div class="cont">
+            <div *ngIf="filteredActivitys === undefined"
+                class="alert alert-warning text-center mt-3 animated fadeIn faster existe">
+                <h4 class="alert-heading">No hay registros</h4>
+                <p>
+                    <i class="fa fa-exclamation fa-2x"></i>
+                </p>
+            </div>
             <div *ngFor="let actividad of filteredActivitys ;let i=index">
                 <div class="card">
-                    
+
                     <div class="box">
-                     
+
                         <div class="content">
                             <img src="{{actividad.imagenes[0].ruta}}" alt="">
                             <h2>{{actividad.id}}</h2>
                             <h3>{{actividad.nombre}}</h3>
                             <p>{{actividad.descripcion}}</p>
                             <p>Realizada: {{actividad.fecha.slice(0,-9)}}</p>
-                            <a href="">Ver mas</a>
+                            <a [routerLink]="['/cea-actividades/actividad',actividad.id]">Ver mas</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<app-footer></app-footer>
+</div> <app-footer></app-footer>

@@ -48,7 +48,6 @@ namespace API_SERVER_CEA.Controllers
         //    }
 
 
-
         //}
         public IActionResult Login(LoginUser userLogin)
         {
@@ -81,7 +80,7 @@ namespace API_SERVER_CEA.Controllers
         //    var user = Authenticate(userLogin);
         //    if (user != null)
         //    {
-              
+
         //        if (user.estadoUsuario != 1)
         //        {
         //            return BadRequest(new { estado = $"El usuario {userLogin.UserName}  se encuentra desactivado" });
@@ -91,7 +90,7 @@ namespace API_SERVER_CEA.Controllers
         //            var token = Generar(user);
         //            return Ok(token);
         //        }
-                
+
         //    }
         //    return BadRequest(new { estado = "Las credenciales de sesion del usuario ingresado fueron incorrectas verifique e ingrese nuevamente" });
         //}

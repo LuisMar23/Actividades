@@ -64,6 +64,8 @@ import { DialogDetailActivityComponent } from './actividad/dialog-detail-activit
     MatDatepickerModule,
     MatNativeDateModule,
     MatAutocompleteModule,
+    MatDatepickerModule,
+    MatInputModule,
     MatRadioModule,
     MatProgressBarModule,
     MatButtonModule,

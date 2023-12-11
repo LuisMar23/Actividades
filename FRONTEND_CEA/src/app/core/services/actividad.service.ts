@@ -37,4 +37,7 @@ export class ActividadService {
   bajaActividad(id:number,actividad:IActividad):Observable<any>{
     return this.httpclient.put(`${environment.API_URL}/api/Activity/baja/${id}`,actividad)
   }
+  obtenerTotalPersonasGenero():Observable<any>{
+    return this.httpclient.get(`${environment.API_URL}${this.ruta}/totalPersonasGenero/${8}`);
+  }
 }

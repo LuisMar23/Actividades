@@ -18,7 +18,7 @@ namespace API_SERVER_CEA.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    //[Authorize]
+    [Authorize]
     public class VisitsController : ControllerBase
     {
         private readonly ApplicationContext _context;

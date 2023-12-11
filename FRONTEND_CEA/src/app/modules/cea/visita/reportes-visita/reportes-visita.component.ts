@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatInputModule } from '@angular/material/input';
 import { VisitaService } from 'src/app/core/services/visita.service';
 import { MatDatepicker } from '@angular/material/datepicker';
 import { Dialog } from '@angular/cdk/dialog';
@@ -50,5 +51,25 @@ export class ReportesVisitaComponent implements OnInit {
       this._alerta.mensajeAgregar("Reporte Generado Exitosamente");
     });
      this.cancelar();
+  }
+  formatDate(date: Date | null): string {
+    if (date) {
+      const day = this.padNumber(date.getDate());
+      const month = this.padNumber(date.getMonth() + 1);
+      const year = date.getFullYear();
+      return `${day}/${month}/${year}`;
+    }
+    return '';
+  }
+  
+  padNumber(number: number): string {
+    return number < 10 ? '0' + number : number.toString();
+  }
+  parseDatePicker = (text: string): Date => {
+    const parts = text.trim().split('/');
+    const day = +parts[0];
+    const month = +parts[1] - 1;
+    const year = +parts[2];
+    return new Date(year, month, day);
   }
 }

@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand&family=Roboto+Flex:wght@900&display=swap');
+
+.container {
+    min-height: 750px; /* Cambiamos "height" por "min-height" para permitir que el container crezca según su contenido */
+    padding-top: 30px;
+    margin-top: 60px;
+    position: relative;
+    margin-bottom: 10px; /* Agregamos posición relativa para el posicionamiento absoluto del footer */
+  }
+  
+  .app-footer {
+    position: absolute; /* Posicionamos el footer de forma absoluta */
+    bottom: 0; /* Lo ubicamos al final del container */
+    left: 0; /* Alineamos el footer a la izquierda del container */
+    width: 100%; /* Establecemos que el footer ocupe el ancho completo del container */
+  }
+
+.titulo{
+    text-align: center;
+    background-color:#7f7f7f;
+    color: #ffff;
+    text-transform: uppercase;
+    padding: 30px 30px;
+}
+.titulo>h5{
+    font-family: Roboto,Calibri,Candara,Arial,sans-serif;
+    font-weight:bold;
+    font-size: 40px;
+}
+.texto{
+    background-color: #86527b;
+    color: #ffff;
+    padding: 50px 55px;
+    font-family: 'Quicksand', sans-serif;
+}
+
+.texto>p{
+    font-weight: 600;
+}
+
+.t {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 15px;
+    padding-top: 10px;
+    margin: 10px;
+    padding-bottom: 5px;
+    padding-left: 0px;
+}
+.return{
+    padding-top: 10px;
+    margin: 10px;
+    
+}
+.return{
+  float: right;
+  text-align: right;
+  gap:5px;
+}
+.r{
+    padding-left: 5px;
+    font-family: 'Quicksand',sans-serif;
+}

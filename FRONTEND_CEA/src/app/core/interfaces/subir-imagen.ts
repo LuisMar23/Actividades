@@ -1,10 +1,12 @@
 import {Cloudinary} from "./cloudinary";
 
 export const subirImagen = async (file: File): Promise<string> => {
-  const cloudUrl = "https://api.cloudinary.com/v1_1/dbrd3nblk/upload";
+  // const cloudUrl = "https://api.cloudinary.com/v1_1/dbrd3nblk/upload";
+    const cloudUrl = "https://api.cloudinary.com/v1_1/drewrhfhy/upload";
   const formData = new FormData();
   formData.append("upload_preset", "ceaprueba");
   formData.append("file", file);
+  
 
   try {
     const resp = await fetch(cloudUrl, { method: "POST", body: formData });

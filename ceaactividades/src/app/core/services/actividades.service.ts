@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Actividades } from '../interface/actividades';
+import { IActividades } from '../interface/actividades';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -16,16 +16,15 @@ export class ActividadesService {
     );
   }
   obtenerActivos():Observable<any>{
-    return this.httpclient.get<any>(`${environment.API_URL}/api/Activity`);
+    return this.httpclient.get<any>(`${environment.API_URL}/api/Activity/obtenerActividadesActivas`);
   }
   obtenerTotal(){
     return this.httpclient.get(`${environment.API_URL}/api/Activity/total`);
   }
-  obtenerTotalPersonas(){
-    return this.httpclient.get(`${environment.API_URL}/api/Activity/totalpersonas`);
-  }
-  obtenerTotalPersonasGenero(){
-    return this.httpclient.get(`${environment.API_URL}/api/Activity/totalPersonasGenero`);
+
+  obtenerTotalPersonasGenero(id:number):Observable<any>{
+
+    return this.httpclient.get(`${environment.API_URL}${this.ruta}/totalPersonas/${id}`);
   }
   
 }

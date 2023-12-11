@@ -4,6 +4,7 @@ import { ActividadesComponent } from './actividades/actividades.component';
 import { ActividadComponent } from './actividad/actividad.component';
 import { CeaRoutingModule } from './cea-routing.module';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { MisionvisionComponent } from './misionvision/misionvision.component';
 
 
 
@@ -11,7 +12,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
   declarations: [
    
     ActividadesComponent,
-    ActividadComponent
+    ActividadComponent,
+    MisionvisionComponent
   ],
   imports: [
     CommonModule,
