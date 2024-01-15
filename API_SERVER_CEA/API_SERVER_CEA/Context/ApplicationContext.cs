@@ -17,6 +17,9 @@ namespace API_SERVER_CEA.Context
         public DbSet<Visita> Visita { get; set; }
         public DbSet<ActivityModel> Activity { get; set; }
         public DbSet<ImagesModel> Images { get; set; }
+        public DbSet<AcSubtitulo> AcSubtitulo { get; set; }
+        public DbSet<ActividadTitulo> actividadTitulo { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

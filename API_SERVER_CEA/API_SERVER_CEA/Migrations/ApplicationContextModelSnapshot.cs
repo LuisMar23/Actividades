@@ -22,6 +22,58 @@ namespace API_SERVER_CEA.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
+            modelBuilder.Entity("API_SERVER_CEA.Modelo.AcSubtitulo", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("descripcion")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("estado")
+                        .HasColumnType("int");
+
+                    b.Property<string>("subtitulo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AcSubtitulo");
+                });
+
+            modelBuilder.Entity("API_SERVER_CEA.Modelo.ActividadTitulo", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int?>("AcSubtituloId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ActituloId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("estado")
+                        .HasColumnType("int");
+
+                    b.Property<string>("titulo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AcSubtituloId");
+
+                    b.ToTable("actividadTitulo");
+                });
+
             modelBuilder.Entity("API_SERVER_CEA.Modelo.ActivityModel", b =>
                 {
                     b.Property<int>("Id")
@@ -29,6 +81,15 @@ namespace API_SERVER_CEA.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("AcsubtituloId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ActituloId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ActividadTituloId")
+                        .HasColumnType("int");
 
                     b.Property<string>("descripcion")
                         .IsRequired()
@@ -53,6 +114,10 @@ namespace API_SERVER_CEA.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AcsubtituloId");
+
+                    b.HasIndex("ActividadTituloId");
 
                     b.ToTable("Activity");
                 });
@@ -216,6 +281,32 @@ namespace API_SERVER_CEA.Migrations
                     b.HasIndex("PersonaId");
 
                     b.ToTable("Visita");
+                });
+
+            modelBuilder.Entity("API_SERVER_CEA.Modelo.ActividadTitulo", b =>
+                {
+                    b.HasOne("API_SERVER_CEA.Modelo.AcSubtitulo", "AcSubtitulo")
+                        .WithMany()
+                        .HasForeignKey("AcSubtituloId");
+
+                    b.Navigation("AcSubtitulo");
+                });
+
+            modelBuilder.Entity("API_SERVER_CEA.Modelo.ActivityModel", b =>
+                {
+                    b.HasOne("API_SERVER_CEA.Modelo.AcSubtitulo", "AcSubtitulo")
+                        .WithMany()
+                        .HasForeignKey("AcsubtituloId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("API_SERVER_CEA.Modelo.ActividadTitulo", "ActividadTitulo")
+                        .WithMany()
+                        .HasForeignKey("ActividadTituloId");
+
+                    b.Navigation("AcSubtitulo");
+
+                    b.Navigation("ActividadTitulo");
                 });
 
             modelBuilder.Entity("API_SERVER_CEA.Modelo.ImagesModel", b =>

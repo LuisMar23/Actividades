@@ -28,5 +28,12 @@ namespace API_SERVER_CEA.Modelo
 
         public List<ImagesModel>? Imagenes { get; set; }
 
+        public int ActituloId { get; set; }
+        public AcSubtitulo? AcSubtitulo { get; set; }
+
+        public int AcsubtituloId { get; set; }
+        public ActividadTitulo? ActividadTitulo { get; set; }
+
+
     }
 }

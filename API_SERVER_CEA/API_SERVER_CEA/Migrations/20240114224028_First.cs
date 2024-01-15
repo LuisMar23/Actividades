@@ -5,26 +5,23 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace API_SERVER_CEA.Migrations
 {
-    public partial class Primera : Migration
+    public partial class First : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Activity",
+                name: "AcSubtitulo",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    nombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    objetivo = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    subtitulo = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     descripcion = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    lugar = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    fecha = table.Column<DateTime>(type: "datetime2", nullable: false),
                     estado = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Activity", x => x.Id);
+                    table.PrimaryKey("PK_AcSubtitulo", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -64,22 +61,23 @@ namespace API_SERVER_CEA.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Images",
+                name: "actividadTitulo",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ruta = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    estado = table.Column<int>(type: "int", nullable: false),
-                    idActivity = table.Column<int>(type: "int", nullable: true)
+                    titulo = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ActituloId = table.Column<int>(type: "int", nullable: false),
+                    AcSubtituloId = table.Column<int>(type: "int", nullable: true),
+                    estado = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Images", x => x.Id);
+                    table.PrimaryKey("PK_actividadTitulo", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Images_Activity_idActivity",
-                        column: x => x.idActivity,
-                        principalTable: "Activity",
+                        name: "FK_actividadTitulo_AcSubtitulo_AcSubtituloId",
+                        column: x => x.AcSubtituloId,
+                        principalTable: "AcSubtitulo",
                         principalColumn: "Id");
                 });
 
@@ -104,6 +102,58 @@ namespace API_SERVER_CEA.Migrations
                         principalTable: "Persona",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Activity",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    nombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    objetivo = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    descripcion = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    lugar = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    fecha = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    estado = table.Column<int>(type: "int", nullable: false),
+                    ActituloId = table.Column<int>(type: "int", nullable: false),
+                    AcsubtituloId = table.Column<int>(type: "int", nullable: false),
+                    ActividadTituloId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Activity", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Activity_AcSubtitulo_AcsubtituloId",
+                        column: x => x.AcsubtituloId,
+                        principalTable: "AcSubtitulo",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Activity_actividadTitulo_ActividadTituloId",
+                        column: x => x.ActividadTituloId,
+                        principalTable: "actividadTitulo",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Images",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ruta = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    estado = table.Column<int>(type: "int", nullable: false),
+                    idActivity = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Images", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Images_Activity_idActivity",
+                        column: x => x.idActivity,
+                        principalTable: "Activity",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -141,6 +191,21 @@ namespace API_SERVER_CEA.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_actividadTitulo_AcSubtituloId",
+                table: "actividadTitulo",
+                column: "AcSubtituloId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Activity_AcsubtituloId",
+                table: "Activity",
+                column: "AcsubtituloId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Activity_ActividadTituloId",
+                table: "Activity",
+                column: "ActividadTituloId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Images_idActivity",
@@ -187,6 +252,12 @@ namespace API_SERVER_CEA.Migrations
 
             migrationBuilder.DropTable(
                 name: "Persona");
+
+            migrationBuilder.DropTable(
+                name: "actividadTitulo");
+
+            migrationBuilder.DropTable(
+                name: "AcSubtitulo");
         }
     }
 }
